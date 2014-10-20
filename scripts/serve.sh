@@ -1,7 +1,13 @@
 #!/usr/bin/env bash
 
 block="server {
-    listen 80;
+    listen *:80;
+    server_name $1;
+
+    rewrite ^(.*)$ https://$1 permanent;
+}
+server {
+    listen *:443 ssl;
     server_name $1;
     root "$2";
 
@@ -18,8 +24,6 @@ block="server {
 
     access_log off;
     error_log  /var/log/nginx/$1-error.log error;
-
-    error_page 404 /index.php;
 
     sendfile off;
 
@@ -42,5 +46,6 @@ block="server {
 
 echo "$block" > "/etc/nginx/sites-available/$1"
 ln -fs "/etc/nginx/sites-available/$1" "/etc/nginx/sites-enabled/$1"
+echo -e "\n127.0.0.1 $1" | sudo tee --append /etc/hosts > /dev/null
 service nginx restart
 service php5-fpm restart
