@@ -11,6 +11,7 @@ keys:
 folders:
     - map: ~/Projects
       to: /home/vagrant/Projects
+      type: nfs
 
 sites:
     - map: my.smart.lan
