@@ -46,6 +46,5 @@ server {
 
 echo "$block" > "/etc/nginx/sites-available/$1"
 ln -fs "/etc/nginx/sites-available/$1" "/etc/nginx/sites-enabled/$1"
-echo -e "\n127.0.0.1 $1" | sudo tee --append /etc/hosts > /dev/null
 service nginx restart
 service php5-fpm restart

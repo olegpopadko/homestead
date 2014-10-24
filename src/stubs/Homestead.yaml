@@ -16,6 +16,8 @@ folders:
 sites:
     - map: my.smart.lan
       to: /home/vagrant/Projects/smart/www
+    - map: admin.smart.lan
+      to: /home/vagrant/Projects/smart/public
     - map: auth-new.smart.lan
       to: /home/vagrant/Projects/auth-smart-new/public
 
